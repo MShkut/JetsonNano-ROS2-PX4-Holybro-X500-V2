@@ -177,5 +177,9 @@ source build_ros2_workspace.bash
 
 4. If the build was unsuccessful run source build_ros2_workspace.bash again and it should compile quickly and correctly. 
 
+5. Add workspace to the directory
+```
+echo source ~/px4_ros_com_ros2/install/setup.bash' >> ~/.bashrc
+
 ## Step 8 - Test the connection is open and working 
 
