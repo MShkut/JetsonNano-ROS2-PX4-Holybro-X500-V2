@@ -64,6 +64,6 @@ sudo apt upgrade
 sudo apt install ros-foxy-desktop python3-argcomplete
 sudo apt install ros-dev-tools
 echo 'source /opt/ros/foxy/setup.bash' >> ~/.bashrc
-#run `source ~/.bashrc` or open a new terminal (only needed for first time after entering above command)
+#run source ~/.bashrc or open a new terminal (only needed for first time after entering above command)
 ```
 
