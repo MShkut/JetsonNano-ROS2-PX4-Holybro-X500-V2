@@ -184,3 +184,40 @@ echo source ~/px4_ros_com_ros2/install/setup.bash' >> ~/.bashrc
 
 ## Step 8 - Test the connection is open and working 
 
+1. Open a new terminal on the Nano and run
+```
+sudo usermod -a -G tty USERNAME
+sudo usermod -a -G dialout USERNAME
+```
+Restart the jetson nano
+
+2. Connect the PX4-6C to your computer and open QGroundControl. Click the Q -> Analyze Tools -> Mavlink console -> type 'micrortps_client status' to ensure it is running on the flight controller
+
+4. Open a new terminal on the nano and run
+```
+micrortps_agent -d /dev/ttyTHS1 -b 3000000
+```
+You should see an output with publishers and subscribers listed
+
+5. Open a new terminal and run
+```
+ros2 launch px4_ros_com sensor_combined_listener.launch.py
+```
+
+you should see similar data to
+```
+RECEIVED DATA FROM SENSOR COMBINED
+================================
+ts: 870938190
+gyro_rad[0]: 0.00341645
+gyro_rad[1]: 0.00626475
+gyro_rad[2]: -0.000515705
+gyro_integral_dt: 4739
+accelerometer_timestamp_relative: 0
+accelerometer_m_s2[0]: -0.273381
+accelerometer_m_s2[1]: 0.0949186
+accelerometer_m_s2[2]: -9.76044
+accelerometer_integral_dt: 4739
+```
+
+**Note that PX4 Autopilot & QGroundControl do not need to be installed on the jetson nano for this application but do need to be installed on your computer for the necessary steps listed above
