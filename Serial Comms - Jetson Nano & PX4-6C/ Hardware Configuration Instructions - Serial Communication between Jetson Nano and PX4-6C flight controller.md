@@ -66,14 +66,14 @@ echo 'source /opt/ros/foxy/setup.bash' >> ~/.bashrc
 ## Step 4 - Create firmware with microRTPS
 While ROS2 Foxy is loading on the Jetson Nano, move over to your laptop/PC and install the PX4 Autopilot release 1.13, which will allow us to build the custom firmware needed to run microRTPS on our PX4-6C.
 
-1.Download the PX4 Autopilot software release 1.13 and install it
+1. Download the PX4 Autopilot software release 1.13 and install it
 ```
 git clone -b release/1.13 https://github.com/PX4/PX4-Autopilot.git --recursive
 bash ./PX4-Autopilot/Tools/setup/ubuntu.sh
 ```
 2. Restart your computer as the guide suggests
 
-3.Copy the rtps firmware tempate from v5 to v6c and edit it to disable dds paramaters
+3. Copy the rtps firmware tempate from v5 to v6c and edit it to disable dds paramaters
 ```
 cd ~/PX4-Autopilot/boards/px4/fmu-v5
 cp rtps.px4board /PX4-Autopilot/boards/px4/fmu-v6c
