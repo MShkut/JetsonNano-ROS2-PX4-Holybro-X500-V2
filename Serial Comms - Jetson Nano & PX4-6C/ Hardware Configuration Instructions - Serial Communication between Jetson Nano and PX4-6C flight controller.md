@@ -180,6 +180,7 @@ source build_ros2_workspace.bash
 5. Add workspace to the directory
 ```
 echo source ~/px4_ros_com_ros2/install/setup.bash' >> ~/.bashrc
+```
 
 ## Step 8 - Test the connection is open and working 
 
