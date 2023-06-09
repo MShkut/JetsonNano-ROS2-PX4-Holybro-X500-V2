@@ -63,6 +63,14 @@ sudo apt install ros-dev-tools
 echo 'source /opt/ros/foxy/setup.bash' >> ~/.bashrc
 #run source ~/.bashrc or open a new terminal (only needed for first time after entering above command)
 ```
+
+4. Ensure dependencies and need packages are installed
+```
+sudo apt install python3-colcon-common-extensions
+sudo apt install ros-foxy-eigen3-cmake-module
+sudo apt install empy pyros-genmsg setuptools
+```
+
 ## Step 4 - Create firmware with microRTPS
 While ROS2 Foxy is loading on the Jetson Nano, move over to your laptop/PC and install the PX4 Autopilot release 1.13, which will allow us to build the custom firmware needed to run microRTPS on our PX4-6C.
 
@@ -125,6 +133,21 @@ chmod +x ./QGroundControl.AppImage
 
 These are all the firmware settings related to the serial communications.
 
-## Step 6 - Install FastRTPS on the Jetson nano
+## Step 6 - Install Fast-RTPS-Gen on the Jetson nano
+1. Install java 13
+```
+sudo apt-get install openjdk-13-jre
+```
 
+2. Install Fast-RTPS-Gen
+```
+git clone --recursive https://github.com/eProsima/Fast-DDS-Gen.git -b v1.0.4 ~/Fast-RTPS-Gen \ #you may need to hit enter if stuck on >
+cd ~/Fast-RTPS-Gen/gradle/wrapper
+gedit gradle-wrapper.properties
+distributionUrl=https\://services.gradle.org/distributions/gradle-6.8.3-bin.zip
+cd ~/Fast-RTPS-Gen 
+./gradlew assemble && sudo env "PATH=$PATH" ./gradlew install
+```
+
+## Step 7 - Install 
 
