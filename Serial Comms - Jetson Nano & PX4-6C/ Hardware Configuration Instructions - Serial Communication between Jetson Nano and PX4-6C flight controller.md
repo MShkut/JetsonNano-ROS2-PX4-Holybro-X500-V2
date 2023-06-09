@@ -1,6 +1,6 @@
 These are instructions for setting up the PX4-6C Flight controller serial communications with the Jetson Nano over the GPIO pins 6,8,10. The Jetson nano runs a custom ubuntu kernel to operate on Ubuntu 20.04, this is to allow the installation of ROS2 Foxy, which is necessary for the desired autonomous control later in the project. 
 
-**Step 1**
+##Step 1
 
 1. Download balena etcher - https://etcher.balena.io/
 2. Download the custom Ubuntu 20.04 image here - https://forums.developer.nvidia.com/t/xubuntu-20-04-focal-fossa-l4t-r32-3-1-custom-image-for-the-jetson-nano/121768
@@ -8,7 +8,7 @@ These are instructions for setting up the PX4-6C Flight controller serial commun
 4. Insert the microSD card into the Jetson Nano following all the standard prompts to set up the OS
 5. Run `sudo apt update` and `sudo apt upgrade`
 
-**Step 2**
+##Step 2
 
 In order to allow for serial communications to take place between the PX4-6C and the Jetson Nano's Serial Port the serial monitor which is enabled by default on the Jetson Nano must be disabled. This is called nvgetty. Run the commands below to do this. 
 
@@ -19,7 +19,7 @@ udevadm trigger
 #you may want to reboot instead
 ```
 
-**Step 3**
+##Step 3
  
 Install Ros2 Foxy. Find the full instructions here - https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html . For ease of this guide I have copied the instructions below. 
 
