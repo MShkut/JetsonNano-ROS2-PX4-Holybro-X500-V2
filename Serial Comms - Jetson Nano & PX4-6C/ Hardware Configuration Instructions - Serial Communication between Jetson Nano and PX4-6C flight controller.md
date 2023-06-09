@@ -68,7 +68,8 @@ echo 'source /opt/ros/foxy/setup.bash' >> ~/.bashrc
 ```
 sudo apt install python3-colcon-common-extensions
 sudo apt install ros-foxy-eigen3-cmake-module
-sudo apt install empy pyros-genmsg setuptools
+sudo apt install python3-pip
+sudo pip3 install -U empy pyros-genmsg setuptools
 ```
 
 ## Step 4 - Create firmware with microRTPS
