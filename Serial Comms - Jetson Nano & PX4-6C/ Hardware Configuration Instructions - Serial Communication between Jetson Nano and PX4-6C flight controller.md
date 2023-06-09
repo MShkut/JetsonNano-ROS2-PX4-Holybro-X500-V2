@@ -1,4 +1,4 @@
-These are instructions for setting up the PX4-6C Flight controller serial communications with the Jetson Nano over the GPIO pins 6,8,10. The Jetson nano runs a custom ubuntu kernel to operate on Ubuntu 20.04, this is to allow the installation of ROS2 Foxy, which is necessary for the desired autonomous control later in the project. 
+These are instructions for setting up the PX4-6C Flight controller serial communications with the Jetson Nano over the GPIO pins 6,8,10. The Jetson nano runs a custom ubuntu kernel to operate on Ubuntu 20.04, this is to allow the installation of ROS2 Foxy, which is necessary for the desired autonomous control later in the project. Many commands are taken from https://docs.px4.io/v1.13/en/ros/ros2_comm.html, however I have simplified them for this specific application, including only what's necessary. 
 
 ## Step 1 - Flash Ubuntu 20.04 OS
 
@@ -69,8 +69,13 @@ echo 'source /opt/ros/foxy/setup.bash' >> ~/.bashrc
 sudo apt install python3-colcon-common-extensions
 sudo apt install ros-foxy-eigen3-cmake-module
 sudo apt install python3-pip
-sudo pip3 install -U empy pyros-genmsg setuptools
+sudo pip3 install -U empy pyros-genmsg setuptools 
 ```
+if you get an error saying that test resources need to be installed then run
+```
+sudo apt-get install -y python3-testresources
+```
+and re-run the last command above in 4.
 
 ## Step 4 - Create firmware with microRTPS
 While ROS2 Foxy is loading on the Jetson Nano, move over to your laptop/PC and install the PX4 Autopilot release 1.13, which will allow us to build the custom firmware needed to run microRTPS on our PX4-6C.
@@ -150,5 +155,27 @@ cd ~/Fast-RTPS-Gen
 ./gradlew assemble && sudo env "PATH=$PATH" ./gradlew install
 ```
 
-## Step 7 - Install 
+## Step 7 - Install ros_com and ros_msg in a ROS2 workspace
+
+1. create a directory
+```
+mkdir -p ~/px4_ros_com_ros2/src
+cd ~/px4_ros_com_ros2/src
+```
+
+2. Clone the ROS 2 bridge packages px4_ros_com and px4_msgs to the /src directory (the release/1.13 branch must be cloned):
+```
+git clone -b release/1.13 https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com
+git clone -b release/1.13 https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros2/src/px4_msgs
+```
+
+3. Use the build_ros2_workspace.bash script to build the ROS 2 workspace (including px4_ros_com and px4_msgs).
+```
+cd ~/px4_ros_com_ros2/src/px4_ros_com/scripts
+source build_ros2_workspace.bash
+```
+
+4. If the build was unsuccessful run source build_ros2_workspace.bash again and it should compile quickly and correctly. 
+
+## Step 8 - Test the connection is open and working 
 
