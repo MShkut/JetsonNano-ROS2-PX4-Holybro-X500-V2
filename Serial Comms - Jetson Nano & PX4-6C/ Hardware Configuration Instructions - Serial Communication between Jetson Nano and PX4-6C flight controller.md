@@ -128,7 +128,7 @@ Connect your flight controller by USB, go into vehicle setup, then firmware. Cli
 Follow the standard set-up instructions for configuring your drone, not covered here as it's well documented on the PX4 website.
 
 2. 
-Open the firmware settings go to mavlink1 and ensure it is set to disabled, reboot the vehicle
+Open the firmware settings go to mavlink2 and ensure it is set to disabled, reboot the vehicle
 
 3.
 Open the firmware settings again, type RTPS_Config and set it to TELEM2, reboot the vehicle
