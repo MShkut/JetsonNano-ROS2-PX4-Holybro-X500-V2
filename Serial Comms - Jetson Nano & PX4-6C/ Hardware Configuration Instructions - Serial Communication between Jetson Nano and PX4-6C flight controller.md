@@ -23,8 +23,7 @@ udevadm trigger
  
 Install Ros2 Foxy. Find the full instructions here - https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html . For ease of this guide I have copied the instructions below. 
 
-1. 
-Make sure you have a locale which supports UTF-8. If you are in a minimal environment (such as a docker container), the locale may be something minimal like POSIX. We test with the following settings. However, it should be fine if you’re using a different UTF-8 supported locale.                     
+1. Make sure you have a locale which supports UTF-8. If you are in a minimal environment (such as a docker container), the locale may be something minimal like POSIX. We test with the following settings. However, it should be fine if you’re using a different UTF-8 supported locale.                     
 ```
 locale  # check for UTF-8
 
@@ -36,8 +35,7 @@ export LANG=en_US.UTF-8
 locale  # verify settings
 ```
 
-2. 
-Setup Sources. You will need to add the ROS 2 apt repository to your system.
+2. Setup Sources. You will need to add the ROS 2 apt repository to your system.
 
 First ensure that the Ubuntu Universe repository is enabled.
 ```
@@ -56,8 +54,7 @@ Then add the repository to your sources list.
 ```
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 ```
-3. 
-Install ROS2 Packages & add to your .bashrc
+3. Install ROS2 Packages & add to your .bashrc
 ```
 sudo apt update
 sudo apt upgrade
@@ -69,17 +66,14 @@ echo 'source /opt/ros/foxy/setup.bash' >> ~/.bashrc
 ## Step 4 - Create firmware with microRTPS
 While ROS2 Foxy is loading on the Jetson Nano, move over to your laptop/PC and install the PX4 Autopilot release 1.13, which will allow us to build the custom firmware needed to run microRTPS on our PX4-6C.
 
-1.
-Download the PX4 Autopilot software release 1.13 and install it
+1.Download the PX4 Autopilot software release 1.13 and install it
 ```
 git clone -b release/1.13 https://github.com/PX4/PX4-Autopilot.git --recursive
 bash ./PX4-Autopilot/Tools/setup/ubuntu.sh
 ```
-2. 
-Restart your computer as the guide suggests
+2. Restart your computer as the guide suggests
 
-3.
-Copy the rtps firmware tempate from v5 to v6c and edit it to disable dds paramaters
+3.Copy the rtps firmware tempate from v5 to v6c and edit it to disable dds paramaters
 ```
 cd ~/PX4-Autopilot/boards/px4/fmu-v5
 cp rtps.px4board /PX4-Autopilot/boards/px4/fmu-v6c
@@ -93,8 +87,8 @@ CONFIG_MODULES_MICRODDS_CLIENT=n
 CONFIG_MODULES_MICRORTPS_BRIDGE=y
 ```
 save and close the file
-4.
-make the firmware
+
+4. Make the firmware
 ```
 cd PX4-Autopilot/
 make px4_fmu-v6c_rtps
@@ -110,31 +104,24 @@ sudo apt install libfuse2 -y
 ```
 Restart your computer
 
-2.
-Download the app image from here: https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html#ubuntu
+2. Download the app image from here: https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html#ubuntu
 
-3.
-Install and run QGroundControl
+3. Install and run QGroundControl
 ```
 chmod +x ./QGroundControl.AppImage
 ./QGroundControl.AppImage  (or double click)
 ```
 
-4.
-Connect your flight controller by USB, go into vehicle setup, then firmware. Click advanced settings, custom firware, and then find the file you created in the previous step. This should be in the ~/PX4-Autopilot/build/px4_fmu-v6c_rtps directory and the file will be called px4_fmu-v6c_rtps.px4. Select this and load it onto the board
+4. Connect your flight controller by USB, go into vehicle setup, then firmware. Click advanced settings, custom firware, and then find the file you created in the previous step. This should be in the ~/PX4-Autopilot/build/px4_fmu-v6c_rtps directory and the file will be called px4_fmu-v6c_rtps.px4. Select this and load it onto the board
 
 ## Step 5 - Set the firmware paramaters and set up the drone
-1.
-Follow the standard set-up instructions for configuring your drone, not covered here as it's well documented on the PX4 website.
+1. Follow the standard set-up instructions for configuring your drone, not covered here as it's well documented on the PX4 website.
 
-2. 
-Open the firmware settings go to MAV_2_CONFIG and ensure it is set to disabled, reboot the vehicle
+2.  Open the firmware settings go to MAV_2_CONFIG and ensure it is set to disabled, reboot the vehicle
 
-3.
-Open the firmware settings again, type RTPS_Config and set it to TELEM2, reboot the vehicle
+3. Open the firmware settings again, type RTPS_Config and set it to TELEM2, reboot the vehicle
 
-4.
-Open the firware settings again, set SER_TEL2_BAUD to 3000000, reboot the vehicle
+4. Open the firware settings again, set SER_TEL2_BAUD to 3000000, reboot the vehicle
 
 These are all the firmware settings related to the serial communications.
 
