@@ -1,5 +1,27 @@
 These are instructions for setting up the PX4-6C Flight controller serial communications with the Jetson Nano over the GPIO pins 6,8,10. The Jetson nano runs a custom ubuntu kernel to operate on Ubuntu 20.04, this is to allow the installation of ROS2 Foxy, which is necessary for the desired autonomous control later in the project. Many commands are taken from https://docs.px4.io/v1.13/en/ros/ros2_comm.html, however I have simplified them for this specific application, including only what's necessary. 
 
+## An overview of all the components used and on which devices throughout this process
+
+Jetson Nano (Onboard Computer):
+- Disable nvgetty
+- Install ROS2 Foxy
+- Install JDK 13
+- Install Fast-RTPS-Gen
+- Add usermod permissions
+- Create ROS2 Workspace with ros_com & ros_msg
+
+Your Personal Computer
+- Install Balena Etcher
+- Download Custom Ubuntu 20.04 Kernel & Flash to MicroSD
+- Install PX4 Autopilot
+- Install QGround Control
+- Make Custom RTPS V6C Firmware
+
+PX4-6C Flight Controller
+- Flash Custom RTPS V6C firmware
+- Enable RTPS on TELEM2
+- Set Baud rate to 3000000
+
 ## Step 1 - Flash Ubuntu 20.04 OS
 
 1. Download balena etcher - https://etcher.balena.io/
