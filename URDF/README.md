@@ -50,7 +50,7 @@ cd .. && colcon build && source install/setup.bash
 ### 5. Running launch file
 Finally，We run the launch files.
 ```
-ros2 launch holybro_drone launch.py 
+ros2 launch drone_urdf launch.py 
 ```
 
 ## Troubleshooting
