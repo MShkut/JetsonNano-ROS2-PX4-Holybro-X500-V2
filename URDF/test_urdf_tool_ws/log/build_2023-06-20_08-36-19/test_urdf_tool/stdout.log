@@ -1,0 +1,33 @@
+running egg_info
+creating ../../build/test_urdf_tool/test_urdf_tool.egg-info
+writing manifest file '../../build/test_urdf_tool/test_urdf_tool.egg-info/SOURCES.txt'
+writing manifest file '../../build/test_urdf_tool/test_urdf_tool.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mitch/test_urdf_tool_ws/build/test_urdf_tool/build
+creating /home/mitch/test_urdf_tool_ws/build/test_urdf_tool/build/lib
+creating /home/mitch/test_urdf_tool_ws/build/test_urdf_tool/build/lib/test_urdf_tool
+copying test_urdf_tool/__init__.py -> /home/mitch/test_urdf_tool_ws/build/test_urdf_tool/build/lib/test_urdf_tool
+running install
+running install_lib
+creating /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/lib/python3.8/site-packages/test_urdf_tool
+byte-compiling /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/lib/python3.8/site-packages/test_urdf_tool/__init__.py to __init__.cpython-38.pyc
+running install_data
+creating /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/ament_index
+creating /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/ament_index/resource_index
+creating /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/ament_index/resource_index/packages
+copying resource/test_urdf_tool -> /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/ament_index/resource_index/packages
+copying package.xml -> /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool
+copying launch/launch.py -> /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool
+creating /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool/urdf
+copying urdf/test_urdf.urdf -> /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool/urdf/
+creating /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool/rviz
+creating /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool/meshes
+creating /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool/meshes/collision
+copying meshes/collision/base_link.STL -> /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool/meshes/collision/
+creating /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool/meshes/visual
+copying meshes/visual/base_link.STL -> /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/share/test_urdf_tool/meshes/visual/
+running install_egg_info
+Copying ../../build/test_urdf_tool/test_urdf_tool.egg-info to /home/mitch/test_urdf_tool_ws/install/test_urdf_tool/lib/python3.8/site-packages/test_urdf_tool-0.0.0-py3.8.egg-info
+running install_scripts
+writing list of installed files to '/home/mitch/test_urdf_tool_ws/build/test_urdf_tool/install.log'
