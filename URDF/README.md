@@ -13,7 +13,8 @@ The test_urdf_tools_ws has been built for use with RVIZ2 (already converted usin
 ### 2. Edit your bashrc to source the above ws using
 ```
 gedit ~/.bashrc
-##add to end of path
+
+# add to end of path
 source ~/test_ws/install/local_setup.bash
 ```
 
