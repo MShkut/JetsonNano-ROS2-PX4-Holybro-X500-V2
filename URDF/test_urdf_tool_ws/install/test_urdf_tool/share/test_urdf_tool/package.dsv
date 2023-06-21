@@ -1,6 +1,0 @@
-source;share/test_urdf_tool/hook/pythonpath.ps1
-source;share/test_urdf_tool/hook/pythonpath.dsv
-source;share/test_urdf_tool/hook/pythonpath.sh
-source;share/test_urdf_tool/hook/ament_prefix_path.ps1
-source;share/test_urdf_tool/hook/ament_prefix_path.dsv
-source;share/test_urdf_tool/hook/ament_prefix_path.sh
