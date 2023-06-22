@@ -1,0 +1,41 @@
+[0.563s] Invoking command in '/home/mitch/drone_urdf/src/drone_urdf': PYTHONPATH=/home/mitch/drone_urdf/build/drone_urdf/prefix_override:/home/mitch/drone_urdf/install/drone_urdf/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/drone_urdf build --build-base /home/mitch/drone_urdf/build/drone_urdf/build install --record /home/mitch/drone_urdf/build/drone_urdf/install.log --install-scripts $base/lib/drone_urdf --single-version-externally-managed
+[0.736s] /home/mitch/.local/lib/python3.8/site-packages/setuptools/dist.py:717: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.736s]   warnings.warn(
+[0.756s] running egg_info
+[0.756s] creating ../../build/drone_urdf/drone_urdf.egg-info
+[0.758s] writing manifest file '../../build/drone_urdf/drone_urdf.egg-info/SOURCES.txt'
+[0.760s] writing manifest file '../../build/drone_urdf/drone_urdf.egg-info/SOURCES.txt'
+[0.760s] running build
+[0.760s] running build_py
+[0.760s] creating /home/mitch/drone_urdf/build/drone_urdf/build
+[0.760s] creating /home/mitch/drone_urdf/build/drone_urdf/build/lib
+[0.760s] creating /home/mitch/drone_urdf/build/drone_urdf/build/lib/drone_urdf
+[0.760s] copying drone_urdf/__init__.py -> /home/mitch/drone_urdf/build/drone_urdf/build/lib/drone_urdf
+[0.760s] running install
+[0.761s] running install_lib
+[0.761s] creating /home/mitch/drone_urdf/install/drone_urdf/lib/python3.8/site-packages/drone_urdf
+[0.761s] byte-compiling /home/mitch/drone_urdf/install/drone_urdf/lib/python3.8/site-packages/drone_urdf/__init__.py to __init__.cpython-38.pyc
+[0.762s] running install_data
+[0.762s] creating /home/mitch/drone_urdf/install/drone_urdf/share/ament_index
+[0.762s] creating /home/mitch/drone_urdf/install/drone_urdf/share/ament_index/resource_index
+[0.763s] creating /home/mitch/drone_urdf/install/drone_urdf/share/ament_index/resource_index/packages
+[0.763s] copying resource/drone_urdf -> /home/mitch/drone_urdf/install/drone_urdf/share/ament_index/resource_index/packages
+[0.763s] copying package.xml -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf
+[0.763s] copying launch/launch.py -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf
+[0.763s] creating /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/urdf
+[0.763s] copying urdf/holybro_drone.urdf -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/urdf/
+[0.763s] creating /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/rviz
+[0.763s] creating /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/meshes
+[0.763s] creating /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/meshes/collision
+[0.763s] copying meshes/collision/drone_body_link.STL -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/meshes/collision/
+[0.767s] copying meshes/collision/controller_link.STL -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/meshes/collision/
+[0.768s] copying meshes/collision/webcam_link.STL -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/meshes/collision/
+[0.768s] creating /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/meshes/visual
+[0.768s] copying meshes/visual/drone_body_link.STL -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/meshes/visual/
+[0.772s] copying meshes/visual/controller_link.STL -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/meshes/visual/
+[0.772s] copying meshes/visual/webcam_link.STL -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/meshes/visual/
+[0.773s] running install_egg_info
+[0.774s] Copying ../../build/drone_urdf/drone_urdf.egg-info to /home/mitch/drone_urdf/install/drone_urdf/lib/python3.8/site-packages/drone_urdf-0.0.0-py3.8.egg-info
+[0.774s] running install_scripts
+[0.788s] writing list of installed files to '/home/mitch/drone_urdf/build/drone_urdf/install.log'
+[0.801s] Invoked command in '/home/mitch/drone_urdf/src/drone_urdf' returned '0': PYTHONPATH=/home/mitch/drone_urdf/build/drone_urdf/prefix_override:/home/mitch/drone_urdf/install/drone_urdf/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/drone_urdf build --build-base /home/mitch/drone_urdf/build/drone_urdf/build install --record /home/mitch/drone_urdf/build/drone_urdf/install.log --install-scripts $base/lib/drone_urdf --single-version-externally-managed

@@ -1,0 +1,13 @@
+running egg_info
+writing manifest file '../../build/drone_urdf/drone_urdf.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+copying urdf/holybro_drone.urdf -> /home/mitch/drone_urdf/install/drone_urdf/share/drone_urdf/urdf/
+running install_egg_info
+removing '/home/mitch/drone_urdf/install/drone_urdf/lib/python3.8/site-packages/drone_urdf-0.0.0-py3.8.egg-info' (and everything under it)
+Copying ../../build/drone_urdf/drone_urdf.egg-info to /home/mitch/drone_urdf/install/drone_urdf/lib/python3.8/site-packages/drone_urdf-0.0.0-py3.8.egg-info
+running install_scripts
+writing list of installed files to '/home/mitch/drone_urdf/build/drone_urdf/install.log'
