@@ -1,3 +1,5 @@
+Taken from: https://github.com/xiaoming-sun6/sw2urdf_ros2
+
 # sw2urdf_ros2
 
 The current solidworks sw2urdf plugin can only be used in ros1, which is obviously unfriendly to the current learning
