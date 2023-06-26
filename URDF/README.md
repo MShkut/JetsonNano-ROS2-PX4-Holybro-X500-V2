@@ -1,4 +1,4 @@
-All files and workspaces used to import the URDF of the drone with webcam and flight controller into RVIZ2
+All files used to import the URDF of the drone with webcam and flight controller into RVIZ2 with their frames and transforms. final dron_urdf package located in the complete_ws. 
 
 ROS1 to ROS2 URDF tool: https://github.com/xiaoming-sun6/sw2urdf_ros2
 
