@@ -13,7 +13,7 @@
   <test_depend>python3-pytest</test_depend>
   
   <exec_depend>drone_urdf</exec_depend>
-  <exec_depend>ros2_arcuo</exec_depend>
+  <exec_depend>ros2_aruco</exec_depend>
   <exec_depend>usb_cam</exec_depend>
 
   <export>
