@@ -23,7 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	'odom = drone_bringup.odom:main'
+            'map = drone_bringup.map:main',
+            'map_sim = drone_bringup.map_sim:main'
         ],
     },
 )
