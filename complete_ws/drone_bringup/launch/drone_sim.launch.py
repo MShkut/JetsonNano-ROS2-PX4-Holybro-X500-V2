@@ -34,10 +34,18 @@ def generate_launch_description():
                          'launch/map_sim.launch.py')
     )
     )
+
+    aruco_listener_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(get_package_share_directory('drone_bringup'),
+                         'launch/aruco_listener.launch.py')
+    )
+    )
    
     #ld.add_action(usb_cam_launch)
     ld.add_action(aruco_node_sim_launch)
     ld.add_action(drone_urdf_launch)
     ld.add_action(map_sim_launch)
+    ld.add_action(aruco_listener_launch)
 
     return ld

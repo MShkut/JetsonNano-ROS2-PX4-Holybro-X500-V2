@@ -11,7 +11,6 @@ class OffboardAruco(Node):
         super().__init__('offboard_aruco')
 
         self.offboard_setpoint_counter = 0
-        self.setpoint_counter_1, self.setpoint_counter_2, self.setpoint_counter_3, self.setpoint_counter_4 = 0.0, 0.0, 0.0, 0.0
         self.timestamp = 0
         self.home_x, self.home_y, self.home_z, self.home_yaw = 0.0, 0.0, 0.0, 0.0
         self.curr_x, self.curr_y, self.curr_z, self.curr_yaw = 0.0, 0.0, 0.0, 0.0
@@ -22,7 +21,7 @@ class OffboardAruco(Node):
             (self.home_x, self.home_y, self.home_z), 
             (self.aruco_large_x, self.aruco_large_y, -1.5), 
             (self.aruco_large_x, self.aruco_large_y, -1.0),
-            (self.aruco_small_x, self.aruco_small_y, -0.5),
+            (self.aruco_small_x, self.aruco_small_y, -0.5)
         ]
         self.current_setpoint_index = 0
 
@@ -106,6 +105,14 @@ class OffboardAruco(Node):
         msg.x, msg.y, msg.z = self.setpoints[self.current_setpoint_index]
         self.trajectory_setpoint_publisher.publish(msg)
 
+    def localization(self):
+        self.local_large_x = abs(self.curr_x - self.aruco_large_x)
+        self.local_large_y = abs(self.curr_y - self.aruco_large_y)
+        self.local_large_z = abs(self.curr_z - self.aruco_large_z)
+        self.local_small_x = abs(self.curr_x - self.aruco_small_x)
+        self.local_small_y = abs(self.curr_y - self.aruco_small_y)
+        self.local_small_z = abs(self.curr_z - self.aruco_small_z)
+
     def publish_vehicle_command(self, command, param1=0.0, param2=0.0):
         msg = VehicleCommand()
         msg.timestamp = self.timestamp
@@ -144,6 +151,7 @@ class OffboardAruco(Node):
             self.publish_vehicle_command(VehicleCommand.VEHICLE_CMD_DO_SET_MODE, 1, 6)
             self.arm()
 
+        self.localization()
         self.publish_offboard_control_mode()
         self.publish_offboard_control()
 
@@ -151,15 +159,15 @@ class OffboardAruco(Node):
             self.update_setpoint(2)
             self.get_logger().info('Large aruco setpoint 1 acquired')
 
-        if abs(self.aruco_large_x) < 0.2 and abs(self.aruco_large_y) < 0.2 and -1.55 < self.curr_z < -1.45 and self.current_setpoint_index == 2:
+        if self.local_large_x < 0.2 and self.local_large_y < 0.2 and -1.55 < self.curr_z < -1.45 and self.current_setpoint_index == 2:
             self.update_setpoint(3)
             self.get_logger().info('Large aruco setpoint 2 acquired')
 
-        if abs(self.aruco_large_x) < 0.1 and abs(self.aruco_large_y) < 0.1 and -1.05 < self.curr_z < -0.95 and self.current_setpoint_index == 3:
+        if self.local_large_x < 0.1 and self.local_large_y < 0.1 and -1.05 < self.curr_z < -0.95 and self.current_setpoint_index == 3:
             self.update_setpoint(4)
             self.get_logger().info('Large aruco setpoint 3 acquired')
 
-        if abs(self.aruco_large_x) < 0.05 and abs(self.aruco_large_y) < 0.05 and -0.55 < self.curr_z < -0.45 and self.current_setpoint_index == 4:
+        if self.local_large_x < 0.05 and self.local_large_x < 0.05 and -0.55 < self.curr_z < -0.45 and self.current_setpoint_index == 4:
             self.land()
 
 
