@@ -1,3 +1,9 @@
+''' Does not work without a global position estimate (Needs GPS)
+    All flight modes which are used for autonomous flights need the same
+    The only option left is offboard control with a custom landing sequence
+    This program may oneday become relevant but it's been 4 years as a known issue'''
+
+
 import rclpy
 from rclpy.node import Node
 from px4_msgs.msg import LandingTargetPose, VehicleCommand, Timesync, VehicleOdometry
@@ -44,12 +50,12 @@ class LandingPositionPublisher(Node):
             msg.y_abs = self.aruco_large_y
             msg.z_abs = 0.5
             self.counter +=1
-            print('Large Aruco Detected')
+            self.get_logger().info('LArge Aruco Detected')
         if self.aruco_small_x is not None and self.counter >= 4:
             msg.x_abs = self.aruco_small_x 
             msg.y_abs = self.aruco_small_y
             msg.z_abs = self.aruco_small_z
-            print('Small Aruco Detected')
+            self.get_logger().info('Small Aruco Detected')
 
         self.landing_target_pose_publisher.publish(msg)
 

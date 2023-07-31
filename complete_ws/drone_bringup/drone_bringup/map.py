@@ -28,10 +28,10 @@ class MapPublisher(Node):
         msg.pose.position.x = x
         msg.pose.position.y = -y
         msg.pose.position.z = -z
-        msg.pose.orientation.x = q_z
-        msg.pose.orientation.y = q_y
-        msg.pose.orientation.z = -q_x
-        msg.pose.orientation.w = -q_w
+        msg.pose.orientation.x = q_x
+        msg.pose.orientation.y = -q_y
+        msg.pose.orientation.z = -q_z
+        msg.pose.orientation.w = q_w
         self.publisher_.publish(msg)
 
         t = TransformStamped()

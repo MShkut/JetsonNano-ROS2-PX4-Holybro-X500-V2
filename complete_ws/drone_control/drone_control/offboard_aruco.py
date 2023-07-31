@@ -2,7 +2,7 @@ import rclpy
 import time
 from rclpy.node import Node
 from std_msgs.msg import Header
-from geometry_msgs.msg import PoseArray
+from geometry_msgs.msg import Pose
 from px4_msgs.msg import OffboardControlMode, TrajectorySetpoint, Timesync, VehicleCommand,VehicleOdometry
 from tf_transformations import euler_from_quaternion
 
@@ -48,10 +48,10 @@ class OffboardAruco(Node):
             VehicleOdometry, 'fmu/vehicle_odometry/out', self.odometry_callback, 10
         )
         self.aruco_poses_large_subscriber = self.create_subscription(
-            PoseArray, 'aruco_poses_large',self.aruco_poses_large_callback, 10
+            Pose, 'aruco_map_large_tf',self.aruco_poses_large_callback, 10
         )
         self.aruco_poses_small_subscriber = self.create_subscription(
-            PoseArray, 'aruco_poses_large', self.aruco_poses_small_callback, 10
+            Pose, 'aruco_map_small_tf', self.aruco_poses_small_callback, 10
         )
 
         #Timers
@@ -123,16 +123,14 @@ class OffboardAruco(Node):
         self.current_setpoint_index = index
 
     def aruco_poses_large_callback(self, msg):
-        for pose in msg.poses:
-            self.aruco_large_x = pose.position.x
-            self.aruco_large_y = pose.position.y
-            self.aruco_large_z = pose.position.z
+        self.aruco_large_x = msg.position.x
+        self.aruco_large_y = msg.position.y
+        self.aruco_large_z = msg.position.z
 
     def aruco_poses_small_callback(self, msg):
-        for pose in msg.poses:
-            self.aruco_small_x = pose.position.x
-            self.aruco_small_y = pose.position.y
-            self.aruco_small_z = pose.position.z
+        self.aruco_small_x = msg.position.x
+        self.aruco_small_y = msg.position.y
+        self.aruco_small_z = msg.position.z
 
     def land(self):
         self.publish_vehicle_command(VehicleCommand.VEHICLE_CMD_NAV_LAND)
@@ -159,7 +157,7 @@ class OffboardAruco(Node):
 
         if abs(self.aruco_large_x) < 0.1 and abs(self.aruco_large_y) < 0.1 and -1.05 < self.curr_z < -0.95 and self.current_setpoint_index == 3:
             self.update_setpoint(4)
-            self.get_logger().info('Small aruco setpoint 1 acquired')
+            self.get_logger().info('Large aruco setpoint 3 acquired')
 
         if abs(self.aruco_large_x) < 0.05 and abs(self.aruco_large_y) < 0.05 and -0.55 < self.curr_z < -0.45 and self.current_setpoint_index == 4:
             self.land()

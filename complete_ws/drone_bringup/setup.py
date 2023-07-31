@@ -24,7 +24,8 @@ setup(
     entry_points={
         'console_scripts': [
             'map = drone_bringup.map:main',
-            'map_sim = drone_bringup.map_sim:main'
+            'map_sim = drone_bringup.map_sim:main',
+            'aruco_listener = drone_bringup.aruco_listener:main'
         ],
     },
 )
