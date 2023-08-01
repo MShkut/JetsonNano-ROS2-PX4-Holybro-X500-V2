@@ -16,8 +16,7 @@
   <exec_depend>ros2_aruco</exec_depend>
   <exec_depend>usb_cam</exec_depend>
 
-  <depend>px4_msgs</depend>
-
+  <exec_depend>visualization_msgs</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>rclpy</exec_depend>
 

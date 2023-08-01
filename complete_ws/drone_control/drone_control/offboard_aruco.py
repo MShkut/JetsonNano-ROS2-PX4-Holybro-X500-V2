@@ -11,6 +11,7 @@ class OffboardAruco(Node):
         super().__init__('offboard_aruco')
 
         self.offboard_setpoint_counter = 0
+        self.current_setpoint_index = 0
         self.timestamp = 0
         self.home_x, self.home_y, self.home_z, self.home_yaw = 0.0, 0.0, 0.0, 0.0
         self.curr_x, self.curr_y, self.curr_z, self.curr_yaw = 0.0, 0.0, 0.0, 0.0
@@ -23,8 +24,7 @@ class OffboardAruco(Node):
             (self.aruco_large_x, self.aruco_large_y, -1.0),
             (self.aruco_small_x, self.aruco_small_y, -0.5)
         ]
-        self.current_setpoint_index = 0
-
+        
         #Publishers
         self.offboard_control_mode_publisher = self.create_publisher(
             OffboardControlMode, 'fmu/offboard_control_mode/in', 10

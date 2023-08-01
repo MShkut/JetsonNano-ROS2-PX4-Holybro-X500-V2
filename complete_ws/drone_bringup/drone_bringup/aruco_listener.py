@@ -3,6 +3,7 @@ from rclpy.node import Node
 from tf2_ros.buffer import Buffer
 from tf2_ros.transform_listener import TransformListener
 from geometry_msgs.msg import Pose, PoseArray
+from visualization_msgs.msg import Marker
 
 class ArucoListener(Node):
     def __init__(self):
@@ -19,12 +20,18 @@ class ArucoListener(Node):
         self.aruco_small_publisher = self.create_publisher(
             Pose, 'aruco_map_small_tf', 10
         )
+        self.aruco_large_marker_publisher = self.create_publisher(
+            Marker, 'large_marker', 10
+        )
+        self.aruco_small_marker_publisher = self.create_publisher(
+            Marker, 'small_marker', 10
+        )
 
         self.aruco_poses_large_subscriber = self.create_subscription(
-            PoseArray, 'aruco_poses_large',self.aruco_poses_large_callback, 10
+            PoseArray, 'aruco_poses_large', self.aruco_poses_large_callback, 10
         )
         self.aruco_poses_small_subscriber = self.create_subscription(
-            PoseArray, 'aruco_poses_large', self.aruco_poses_small_callback, 10
+            PoseArray, 'aruco_poses_small', self.aruco_poses_small_callback, 10
         )
 
         self.timer_large = self.create_timer(
@@ -52,6 +59,41 @@ class ArucoListener(Node):
                 large_pose.orientation.w = tf_large.transform.rotation.w
 
                 self.aruco_large_publisher.publish(large_pose)
+
+                large_marker = Marker()
+                # populate with marker parameters
+                #################################
+                large_marker.header.frame_id = "map"
+                large_marker.ns = 'large_marker'
+                large_marker.type = large_marker.SPHERE
+                large_marker.action = large_marker.ADD
+                large_marker.header.stamp = self.get_clock().now().to_msg()
+
+                # set shape, Arrow: 0; Cube: 1 ; Sphere: 2 ; Cylinder: 3
+                large_marker.type = 2
+                large_marker.id = 1
+
+                # Set the scale of the marker
+                large_marker.scale.x = 0.1
+                large_marker.scale.y = 0.1
+                large_marker.scale.z = 0.1
+
+                # Set the color
+                large_marker.color.r = 0.0
+                large_marker.color.g = 1.0
+                large_marker.color.b = 0.0
+                large_marker.color.a = 1.0
+
+                # Set the pose of the marker
+                large_marker.pose.position.x = large_pose.position.x
+                large_marker.pose.position.y = large_pose.position.x
+                large_marker.pose.position.z = large_pose.position.x
+                large_marker.pose.orientation.x = large_pose.orientation.x
+                large_marker.pose.orientation.y = large_pose.orientation.x
+                large_marker.pose.orientation.z = large_pose.orientation.x
+                large_marker.pose.orientation.w = large_pose.orientation.x
+
+                self.aruco_large_marker_publisher.publish(large_marker)
             except Exception as e:
                 self.get_logger().warn("Transform lookup for large aruco failed: {}".format(str(e)))
 
@@ -71,8 +113,44 @@ class ArucoListener(Node):
                 small_pose.orientation.y = tf_small.transform.rotation.y
                 small_pose.orientation.z = tf_small.transform.rotation.z
                 small_pose.orientation.w = tf_small.transform.rotation.w
-
                 self.aruco_small_publisher.publish(small_pose)
+
+
+                small_marker = Marker()
+
+                # populate with marker parameters
+                #################################
+                small_marker.header.frame_id = "map"
+                small_marker.ns = 'small_marker'
+                small_marker.type = small_marker.SPHERE
+                small_marker.action = small_marker.ADD
+                small_marker.header.stamp = self.get_clock().now().to_msg()
+
+                # set shape, Arrow: 0; Cube: 1 ; Sphere: 2 ; Cylinder: 3
+                small_marker.type = 2
+                small_marker.id = 2
+
+                # Set the scale of the marker
+                small_marker.scale.x = 0.1
+                small_marker.scale.y = 0.1
+                small_marker.scale.z = 0.1
+
+                # Set the color
+                small_marker.color.r = 0.0
+                small_marker.color.g = 1.0
+                small_marker.color.b = 0.0
+                small_marker.color.a = 1.0
+
+                # Set the pose of the marker
+                small_marker.pose.position.x = small_pose.position.x
+                small_marker.pose.position.y = small_pose.position.x
+                small_marker.pose.position.z = small_pose.position.x
+                small_marker.pose.orientation.x = small_pose.orientation.x
+                small_marker.pose.orientation.y = small_pose.orientation.x
+                small_marker.pose.orientation.z = small_pose.orientation.x
+                small_marker.pose.orientation.w = small_pose.orientation.x
+
+                self.aruco_small_marker_publisher.publish(small_marker)
             except Exception as e:
                 self.get_logger().warn("Transform lookup for small aruco failed: {}".format(str(e)))
 
@@ -88,7 +166,7 @@ class ArucoListener(Node):
             self.aruco_small_x = pose.position.x
             self.aruco_small_y = pose.position.y
             self.aruco_small_z = pose.position.z
-
+    
 def main(args=None):
     rclpy.init(args=args)
     node = ArucoListener()
