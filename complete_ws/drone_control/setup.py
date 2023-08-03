@@ -25,7 +25,8 @@ setup(
         'console_scripts': [
             'my_robot_sim_controller = drone_control.my_robot_sim_controller:main',
             'land = drone_control.land:main',
-            'offboard_aruco = drone_control.offboard_aruco:main',
+            'offboard_aruco_large = drone_control.offboard_aruco_large:main',
+            'offboard_aruco_both = drone_control.offboard_aruco_both:main',
             'offboard_hover = drone_control.offboard_hover:main',
             'offboard_test = drone_control.offboard_test:main'
         ],
