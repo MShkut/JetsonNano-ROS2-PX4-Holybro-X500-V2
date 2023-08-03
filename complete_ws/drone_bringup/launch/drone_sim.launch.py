@@ -7,13 +7,6 @@ import os
 def generate_launch_description():
     ld = LaunchDescription()
 
-    usb_cam_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory('usb_cam'),
-                         'launch/launch.py')
-    )
-    )
-
     aruco_node_sim_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('ros2_aruco'),
@@ -28,10 +21,10 @@ def generate_launch_description():
         )
     )
 
-    map_sim_launch = IncludeLaunchDescription(
+    map_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('drone_bringup'),
-                         'launch/map_sim.launch.py')
+                         'launch/map.launch.py')
     )
     )
 
@@ -42,10 +35,9 @@ def generate_launch_description():
     )
     )
    
-    #ld.add_action(usb_cam_launch)
     ld.add_action(aruco_node_sim_launch)
     ld.add_action(drone_urdf_launch)
-    ld.add_action(map_sim_launch)
+    ld.add_action(map_launch)
     ld.add_action(aruco_listener_launch)
 
     return ld

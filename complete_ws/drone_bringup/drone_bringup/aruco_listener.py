@@ -86,16 +86,16 @@ class ArucoListener(Node):
 
                 # Set the pose of the marker
                 large_marker.pose.position.x = large_pose.position.x
-                large_marker.pose.position.y = large_pose.position.x
-                large_marker.pose.position.z = large_pose.position.x
+                large_marker.pose.position.y = large_pose.position.y
+                large_marker.pose.position.z = large_pose.position.z
                 large_marker.pose.orientation.x = large_pose.orientation.x
-                large_marker.pose.orientation.y = large_pose.orientation.x
-                large_marker.pose.orientation.z = large_pose.orientation.x
-                large_marker.pose.orientation.w = large_pose.orientation.x
+                large_marker.pose.orientation.y = large_pose.orientation.y
+                large_marker.pose.orientation.z = large_pose.orientation.z
+                large_marker.pose.orientation.w = large_pose.orientation.w
 
                 self.aruco_large_marker_publisher.publish(large_marker)
             except Exception as e:
-                self.get_logger().warn("Transform lookup for large aruco failed: {}".format(str(e)))
+                error = True
 
 
     def timer_small_callback(self):
@@ -143,16 +143,16 @@ class ArucoListener(Node):
 
                 # Set the pose of the marker
                 small_marker.pose.position.x = small_pose.position.x
-                small_marker.pose.position.y = small_pose.position.x
-                small_marker.pose.position.z = small_pose.position.x
+                small_marker.pose.position.y = small_pose.position.y
+                small_marker.pose.position.z = small_pose.position.z
                 small_marker.pose.orientation.x = small_pose.orientation.x
-                small_marker.pose.orientation.y = small_pose.orientation.x
-                small_marker.pose.orientation.z = small_pose.orientation.x
-                small_marker.pose.orientation.w = small_pose.orientation.x
+                small_marker.pose.orientation.y = small_pose.orientation.y
+                small_marker.pose.orientation.z = small_pose.orientation.z
+                small_marker.pose.orientation.w = small_pose.orientation.w
 
                 self.aruco_small_marker_publisher.publish(small_marker)
             except Exception as e:
-                self.get_logger().warn("Transform lookup for small aruco failed: {}".format(str(e)))
+                error=True
 
 
     def aruco_poses_large_callback(self, msg):

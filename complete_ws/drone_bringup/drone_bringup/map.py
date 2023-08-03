@@ -22,18 +22,21 @@ class MapPublisher(Node):
         self.publish_map(msg.x, msg.y, msg.z, float(q_new[0]), float(q_new[1]), float(q_new[2]), float(q_new[3]))
  
     def publish_map(self, x, y, z, q_x, q_y, q_z, q_w):
+        
+        #odometry topic for easily topic visualization
         msg = PoseStamped()
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = "odometry"
         msg.pose.position.x = x
         msg.pose.position.y = -y
         msg.pose.position.z = -z
-        msg.pose.orientation.x = q_x
-        msg.pose.orientation.y = -q_y
-        msg.pose.orientation.z = -q_z
-        msg.pose.orientation.w = q_w
+        msg.pose.orientation.x = q_z
+        msg.pose.orientation.y = q_y
+        msg.pose.orientation.z = -q_x
+        msg.pose.orientation.w = -q_w
         self.publisher_.publish(msg)
 
+        #Base map transform broadcaster
         t = TransformStamped()
         t.header.stamp = self.get_clock().now().to_msg()
         t.header.frame_id = "map"
