@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="holybro_drone_assembly">
+  <link
+    name="base_link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://drone_urdf/meshes/visual/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://drone_urdf/meshes/visual/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="camera_link">
+    <inertial>
+      <origin
+        xyz="-1.93370223325014E-05 0.00969133661013009 -0.0222849100330783"
+        rpy="0 0 0" />
+      <mass
+        value="0.0925592950450192" />
+      <inertia
+        ixx="1.90667390497114E-05"
+        ixy="-9.98223494507145E-10"
+        ixz="-3.42836265709781E-09"
+        iyy="5.30992572848456E-05"
+        iyz="-1.0531414617093E-07"
+        izz="4.16495082361372E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://drone_urdf/meshes/visual/camera_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://drone_urdf/meshes/visual/camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_link"
+    type="fixed">
+    <origin
+      xyz="0.0852 0 -0.0846499999999999"
+      rpy="3.14159265358979 0 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="body_link">
+    <inertial>
+      <origin
+        xyz="-0.00504204874470229 -3.48721703947321E-05 -0.0402755599020737"
+        rpy="0 0 0" />
+      <mass
+        value="0.453039078577497" />
+      <inertia
+        ixx="0.000251473459157957"
+        ixy="-4.70498213718468E-07"
+        ixz="1.90614055506252E-11"
+        iyy="0.000409524550494582"
+        iyz="4.71350800218366E-13"
+        izz="0.000524303917978318" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://drone_urdf/meshes/visual/body_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://drone_urdf/meshes/visual/body_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_link"
+    type="fixed">
+    <origin
+      xyz="0 0 -0.0398999999999999"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="body_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
