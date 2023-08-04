@@ -1,9 +1,0 @@
-/aruco_node:
-  ros__parameters:
-    marker_size: 0.169
-    aruco_dictionary_id: DICT_5X5_1000
-    image_topic: /camera/image_raw
-    camera_info_topic: /camera/camera_info
-    aruco_image_topic: /aruco_image_large
-    aruco_poses_topic: /aruco_poses_large
-    aruco_link_name: aruco_link_large
