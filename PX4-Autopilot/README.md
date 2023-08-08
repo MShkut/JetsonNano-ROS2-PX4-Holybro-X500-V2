@@ -22,7 +22,7 @@ Ensure you have built the aruco marker from the gazebo_models branch of the main
 cd ~/PX4-Autopilot/msg/tools
 python3 uorb_to_ros_urtps_topics.py -i urtps_bridge_topics.yaml -o ~/px4_ros_com_ros2/src/px4_ros_com/templates/urtps_bridge_topics.yaml
 ```
-
+change the paths to your locations
 ### Step 2: 
 ```
 cd ~/PX4-Autopilot
