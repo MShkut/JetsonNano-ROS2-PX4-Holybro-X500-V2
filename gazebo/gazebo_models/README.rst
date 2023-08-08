@@ -1,3 +1,5 @@
+### To add additional aruco markers to your gazebo models follow the below instructions
+
 gazebo_models
 ==============
 
