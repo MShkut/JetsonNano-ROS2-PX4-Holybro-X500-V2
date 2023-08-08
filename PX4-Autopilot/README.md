@@ -1,3 +1,5 @@
+# PX4 Autopilot changes
+
 PX4 Workspace with changes to:
 - UORB topics sent over RTPS
 - The empty world (which contains an aruco now at 5m, 5m, ~0.1m)
@@ -13,34 +15,34 @@ Replace all files in the PX4-Autopilot folder with their respective counterparts
 
 Ensure you have built the aruco marker from the gazebo_models branch of the main repo for it to be loaded in the empty world. You may have to edit the empty world file to adjust the name of the aruco marker. 
 
-To edit the UORB rtps messages being sent:
+## To edit the UORB rtps messages being sent:
 
-Step 1: 
+### Step 1: 
 ```
 cd ~/PX4-Autopilot/msg/tools
 python3 uorb_to_ros_urtps_topics.py -i urtps_bridge_topics.yaml -o ~/px4_ros_com_ros2/src/px4_ros_com/templates/urtps_bridge_topics.yaml
 ```
 
-Step 2: 
+### Step 2: 
 ```
 cd ~/PX4-Autopilot
 make clean 
 rm -rf build/
 ```
 
-Step 3: 
+### Step 3: 
 ```
 cd ~/px4_ros_com_ros2/src/px4_ros_com/scripts 
 source clean_all.bash
 ```
 
-Step 4: 
+### Step 4: 
 ```
 colcon build
 colcon build
 ```
 
-Step 5(Simulation):
+### Step 5 (Simulation):
 ```
 make px4_sitl_rtps gazebo_iris
 ```
@@ -51,7 +53,7 @@ param set NAV_DLL_ACT 0
 param set NAV_RCL_ACT 0
 ```
 
-Step 5(Harware):
+### Step 5 (Harware):
 ```
 make px4_fmu-v6c_rtps
 ```
