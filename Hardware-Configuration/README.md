@@ -148,7 +148,7 @@ chmod +x ./QGroundControl.AppImage
 ./QGroundControl.AppImage  (or double click)
 ```
 
-4. Connect your flight controller by USB, go into vehicle setup, then firmware. Click advanced settings, custom firware, and then find the file you created in the previous step. This should be in the ~/PX4-Autopilot/build/px4_fmu-v6c_rtps directory and the file will be called px4_fmu-v6c_rtps.px4. Select this and load it onto the board
+4. Connect your flight controller by USB, go into vehicle setup, then firmware. Click advanced settings, custom firware, and then find the file you created in the previous step. This should be in the ~/PX4-Autopilot/build/px4_fmu-v6c directory and the file will be called rtps.px4board. Select this and load it onto the board
 
 ## Step 5 - Set the firmware paramaters and set up the drone
 1. Follow the standard set-up instructions for configuring your drone, not covered here as it's well documented on the PX4 website.
