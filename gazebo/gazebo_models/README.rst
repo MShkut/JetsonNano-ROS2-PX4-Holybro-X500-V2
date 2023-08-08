@@ -1,6 +1,6 @@
 gazebo_models
 ==============
-### To add additional aruco markers to your gazebo models follow the below instructions
+To add aruco markers to your gazebo models follow the below instructions
 
 ar_tag models for gazebo
 
