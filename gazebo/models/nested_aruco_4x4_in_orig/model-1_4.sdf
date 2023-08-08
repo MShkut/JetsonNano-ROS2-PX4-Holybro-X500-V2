@@ -1,0 +1,14 @@
+<?xml version="1.0" ?><sdf version="1.4">
+  <model name="nested_aruco_4x4_in_orig">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://nested_aruco_4x4_in_orig/meshes/nested_aruco_4x4_in_orig.dae</uri>
+          <scale>0.538 0.538 0.538</scale></mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
