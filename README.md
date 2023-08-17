@@ -6,3 +6,6 @@ use wireless charging as well as be attached to a Boston Dynamics Spot Robot.
 
 All files needed, packages used, and steps taken for this project will be kept in this repository. 
 
+To perform camera calibration, follow steps from: https://navigation.ros.org/tutorials/docs/camera_calibration.html#tutorial-steps
+
+
