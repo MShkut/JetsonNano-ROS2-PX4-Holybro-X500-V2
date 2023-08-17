@@ -1,0 +1,9 @@
+/embedded_aruco_node:
+  ros__parameters:
+    marker_size: 0.116
+    aruco_dictionary_id: DICT_5X5_1000
+    image_topic: /image_raw/compressed
+    camera_info_topic: /camera_info
+
+#final embedded parameters are hard coded into the aruco_land file in drone_control
+
