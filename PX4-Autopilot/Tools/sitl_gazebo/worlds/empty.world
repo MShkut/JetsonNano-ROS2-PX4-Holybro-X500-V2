@@ -13,8 +13,8 @@
       <uri>model://asphalt_plane</uri>
     </include>
     <include>
-      <uri>model://nested_aruco_4x4_in_5x5</uri>
-      <pose>5 5 0.1 0 1.5701 0</pose>
+      <uri>model://5x5_1000-122</uri>
+      <pose>3.0 3.0 0.05 0 1.5701 0</pose>
     </include>
     <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
