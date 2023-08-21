@@ -8,16 +8,14 @@ from px4_msgs.msg import OffboardControlMode, TrajectorySetpoint, Timesync, Vehi
 from ros2_aruco_interfaces.msg import ArucoParams
 
 
-class OffboardAruco(Node):
+class ArucoLanding(Node):
     def __init__(self):
-        super().__init__('offboard_aruco')
+        super().__init__('aruco_landing')
         # Initialize PID Parameters
         self.kp = 0.5
-        self.ki = 0.00015
-        self.integral_x, self.integral_y = 0.0, 0.0
         self.control_x, self.control_y = 0.0, 0.0
 
-        self.marker_size = 0.016
+        self.marker_size = 0.024
         self.aruco_dictionary_id = 'DICT_4X4_1000'
 
         # Initialize Flags
@@ -33,7 +31,6 @@ class OffboardAruco(Node):
         #Setpoints must be in NED frame - reverse conversion done during map transform publisher(y and z are made negative)
         #Same must be done in timer_callback for setpoint updater
         self.setpoints = [
-            (0.0, 0.0, -1.5, self.yaw),
             (self.home_x, -self.home_y, -1.5, self.yaw), 
             (1.0, 0.0, -1.5, self.yaw), #where you assume the aruco to be, eventually from spot odom data
             (self.aruco_x, -self.aruco_y, -1.5, self.yaw)
@@ -60,8 +57,8 @@ class OffboardAruco(Node):
         self.odometry_subscriber = self.create_subscription(
             PoseStamped, 'odometry', self.odometry_callback, 10
         )
-        self.aruco_poses_subscriber = self.create_subscription(
-            Pose, 'aruco_map_tf',self.aruco_poses_callback, 10
+        self.aruco_map_pose_subscriber = self.create_subscription(
+            Pose, 'aruco_map_tf',self.aruco_map_pose_callback, 10
         )
 
 
@@ -148,18 +145,9 @@ class OffboardAruco(Node):
             self.aruco_detected = True
             self.get_logger().info('Aruco Detected')
     
-    def PID_position_calculate_x(self, error):
-        self.integral_x += error
-        output = self.kp * error + self.ki * self.integral_x
+    def PID_position_calculate(self, error):
+        output = self.kp * error
         return output
-    
-    def PID_position_calculate_y(self, error):
-        self.integral_y += error
-        output = self.kp * error + self.ki * self.integral_y
-        return output
-    
-    def altitude_calculate(self):
-         self.z += 0.009 #* 0.01/(abs(self.control_x + self.control_y))
 
     def timer_callback(self):
         if self.offboard_setpoint_counter < 16:
@@ -171,7 +159,7 @@ class OffboardAruco(Node):
 
         self.publish_offboard_control_mode()
         self.publish_offboard_control()
-        self.search_timeout += 1 #100 loops = 10 seconds
+        self.search_timeout += 1 #100 loops = 10 second
 
         if 1.45 < self.curr_z < 1.55 and self.current_setpoint_index == 0 and self.search_timeout <299:
             self.current_setpoint_index = 1
@@ -182,22 +170,23 @@ class OffboardAruco(Node):
             self.current_setpoint_index = 2
             error_x = self.curr_x - self.aruco_x
             error_y = self.curr_y - self.aruco_y
-            self.control_x = self.PID_position_calculate_x(error_x)
-            self.control_y = self.PID_position_calculate_y(error_y)
+            self.control_x = self.PID_position_calculate(error_x)
+            self.control_y = self.PID_position_calculate(error_y)
             self.get_logger().info('Acquiring Aruco Marker')
             x_setpoint = self.aruco_x + self.control_x
             y_setpoint = -self.aruco_y + self.control_y 
-            self.setpoints[2] = (x_setpoint, y_setpoint, self.z, self.yaw) 
+            self.setpoints[2] = (x_setpoint, y_setpoint, self.z, self.yaw)
             
-            if self.control_x != 0.0 and self.control_y != 0.0 and self.aruco_detected == True:
-                self.altitude_calculate()
-            
-            if self.curr_z < 0.05 and error_x < 0.05 and error_y < 0.05:
-                self.setpoints[2] = (self.curr_x, self.curr_y, self.curr_z, 0.0)
+            if self.curr_z >= 0.9:
+                self.z += 0.005
+            if self.curr_z < 0.9 and abs(error_x) < 0.08 and abs(error_y) < 0.08:
+                self.z += 0.01
+            if self.curr_z < 0.3:
                 self.land()
         
         if self.aruco_detected == True and self.aruco_small_params_set == False and self.curr_z < 1.0:
-            self.update_marker_params()
+            #self.update_marker_params()
+            self.kp = 0.25
 
         if self.search_timeout >= 300 and self.aruco_detected == False:
             self.current_setpoint_index = 0
@@ -209,9 +198,9 @@ class OffboardAruco(Node):
 def main(args=None):
     print('Starting offboard aruco control node...')
     rclpy.init(args=args)
-    offboard_aruco = OffboardAruco()
-    rclpy.spin(offboard_aruco)
-    offboard_aruco.destroy_node()
+    aruco_landing = ArucoLanding()
+    rclpy.spin(aruco_landing)
+    aruco_landing.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':
